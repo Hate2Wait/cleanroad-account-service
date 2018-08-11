@@ -9,5 +9,7 @@ namespace CleanRoad.UserService.Cqrs.Abstractions.Commands
         public string Password { get; set; }
 
         public string EmailAddress { get; set; }
+
+        public string Name { get; set; }
     }
 }

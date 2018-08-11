@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CleanRoad.UserService.Cqrs.Abstractions.Commands;
 using CleanRoad.UserService.Cqrs.Abstractions.CommandHandler;
 using CleanRoad.UserService.Entities;
+using CleanRoad.UserService.Logic.Abstractions.Cryptography;
 using CleanRoad.UserService.Repositories.Abstractions;
 using MediatR;
 
@@ -13,20 +14,21 @@ namespace CleanRoad.UserService.Cqrs.CommandHandler
     public class TbUserRegisterCommandHandler : IVoidCommandHandler<TbUserRegisterCommand>
     {
         private readonly ITbUsersRepository tbUsersRepository;
+        private readonly IHasher hasher;
 
-        public TbUserRegisterCommandHandler(ITbUsersRepository tbUsersRepository)
+        public TbUserRegisterCommandHandler(ITbUsersRepository tbUsersRepository, IHasher hasher)
         {
             this.tbUsersRepository = tbUsersRepository;
+            this.hasher = hasher;
         }
         
         public async Task<Unit> Handle(TbUserRegisterCommand command, CancellationToken ctx)
         {
-            var hash = MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(command.Password));
-            
             var tbUser = new TbUser
             {
                 StrUserId = command.UserName,
-                Password = Encoding.UTF8.GetString(hash),
+                Name = command.Name,
+                Password = this.hasher.CreateHash(command.Password),
                 Email = command.EmailAddress,
                 SecContent = 1,
                 SecPrimary = 1,

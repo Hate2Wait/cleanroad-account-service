@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace CleanRoad.UserService.Controllers.V1
 {
     [Route("api/v1/[controller]")]
-    public class UsersController : Controller
+    public class AuthController : Controller
     {
         private readonly ICommandBus bus;
 
-        public UsersController(ICommandBus bus)
+        public AuthController(ICommandBus bus)
         {
             this.bus = bus;
         }

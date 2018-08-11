@@ -13,6 +13,8 @@
     <ProjectReference Include="..\CleanRoad.UserService.Controllers\CleanRoad.UserService.Controllers.csproj" />
     <ProjectReference Include="..\CleanRoad.UserService.Cqrs.Abstractions\CleanRoad.UserService.Cqrs.Abstractions.csproj" />
     <ProjectReference Include="..\CleanRoad.UserService.Cqrs\CleanRoad.UserService.Cqrs.csproj" />
+    <ProjectReference Include="..\CleanRoad.UserService.Logic.Abstractions\CleanRoad.UserService.Logic.Abstractions.csproj" />
+    <ProjectReference Include="..\CleanRoad.UserService.Logic\CleanRoad.UserService.Logic.csproj" />
     <ProjectReference Include="..\CleanRoad.UserService.Repositories.Abstractions\CleanRoad.UserService.Repositories.Abstractions.csproj" />
     <ProjectReference Include="..\CleanRoad.UserService.Repositories\CleanRoad.UserService.Repositories.csproj" />
   </ItemGroup>
