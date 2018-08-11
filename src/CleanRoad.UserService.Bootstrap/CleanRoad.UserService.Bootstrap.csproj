@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.FluentBuilder" Version="1.0.2" />
+    <PackageReference Include="CleanCodeLabs.AutoMapper.Extensions.Autofac.DependencyInjection" Version="1.0.0" />
+    <PackageReference Include="MediatR.Extensions.Autofac.DependencyInjection" Version="1.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CleanRoad.UserService.AutoMapper\CleanRoad.UserService.AutoMapper.csproj" />
+    <ProjectReference Include="..\CleanRoad.UserService.Controllers\CleanRoad.UserService.Controllers.csproj" />
+    <ProjectReference Include="..\CleanRoad.UserService.Cqrs.Abstractions\CleanRoad.UserService.Cqrs.Abstractions.csproj" />
+    <ProjectReference Include="..\CleanRoad.UserService.Cqrs\CleanRoad.UserService.Cqrs.csproj" />
+    <ProjectReference Include="..\CleanRoad.UserService.Repositories.Abstractions\CleanRoad.UserService.Repositories.Abstractions.csproj" />
+    <ProjectReference Include="..\CleanRoad.UserService.Repositories\CleanRoad.UserService.Repositories.csproj" />
+  </ItemGroup>
+</Project>
