@@ -1017,11 +1017,13 @@ namespace CleanRoad.UserService.Repositories.Context
 
         private string BuildConnectionString()
         {
-            return new StringBuilder($"Server={this.connectionOptions.Value.Server};")
+            var connectionString =  new StringBuilder($"Server={this.connectionOptions.Value.Server};")
                 .Append($"Database={this.connectionOptions.Value.Database};")
                 .Append($"User Id={this.connectionOptions.Value.UserId};")
                 .Append($"Password={this.connectionOptions.Value.Password};")
                 .ToString();
+
+            return connectionString;
         }
     }
 }

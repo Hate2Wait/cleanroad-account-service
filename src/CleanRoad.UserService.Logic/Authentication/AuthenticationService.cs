@@ -84,6 +84,13 @@ namespace CleanRoad.UserService.Logic.Authentication
                 claims.Add(new Claim(JwtClaimTypes.Name, user.Name));
             }
 
+            if (user.Gmrank.GetValueOrDefault() == 0)
+            {
+                return claims;
+            }
+
+            claims.Add(new Claim(JwtClaimTypes.Role, RoleNames.GameMaster));
+            
             return claims;
         }
     }

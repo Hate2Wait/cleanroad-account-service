@@ -2,6 +2,6 @@
 {
     public class ServiceNames
     {
-        public const string UserService = "CleanRoad_UserService";
+        public const string UserService = "UserService";
     }
 }

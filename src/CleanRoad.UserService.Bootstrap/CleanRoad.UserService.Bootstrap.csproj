@@ -24,4 +24,10 @@
     <ProjectReference Include="..\CleanRoad.UserService.Repositories.Abstractions\CleanRoad.UserService.Repositories.Abstractions.csproj" />
     <ProjectReference Include="..\CleanRoad.UserService.Repositories\CleanRoad.UserService.Repositories.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Update="appsettings.Development.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

@@ -5,6 +5,7 @@ using Autofac;
 using Autofac.Extensions.FluentBuilder;
 using AutoMapper.Extensions.Autofac.DependencyInjection;
 using CleanRoad.UserService.Bootstrap.Config;
+using CleanRoad.UserService.Bootstrap.Services;
 using CleanRoad.UserService.Cqrs.Abstractions.Bus;
 using CleanRoad.UserService.Cqrs.Bus;
 using CleanRoad.UserService.Logic.Abstractions.Cryptography;
@@ -23,6 +24,11 @@ using Microsoft.Extensions.DependencyModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using CleanRoad.UserService.Constants;
+using CleanRoad.UserService.Logic.Abstractions.Authentication;
+using CleanRoad.UserService.Logic.Authentication;
+using IdentityServer4.Services;
+using IdentityServer4.Stores;
+using IdentityServer4.Validation;
 
 namespace CleanRoad.UserService.Bootstrap
 {
@@ -115,6 +121,7 @@ namespace CleanRoad.UserService.Bootstrap
         {
             
             app.UseCors(Startup.CorsPolicyName);
+            
             app.UseIdentityServer();
             
             app.UseMvc();
@@ -132,9 +139,16 @@ namespace CleanRoad.UserService.Bootstrap
 
             new AutofacFluentBuilder(builder.AddMediatR(applicationAssemblies).AddAutoMapper(applicationAssemblies))
                 .RegisterTypeAsScoped<CommandBus, ICommandBus>()
+                .RegisterTypeAsScoped<AuthenticationService, IResourceOwnerPasswordValidator>()
+                .RegisterTypeAsScoped<AuthenticationService, IProfileService>()
+                .RegisterTypeAsScoped<AuthenticationService, IAuthService>()
+                .RegisterTypeAsScoped<DistributedCacheGrantStoreService, IPersistedGrantStore>()
+                .RegisterTypeAsSingleton<CorsPolicyService, ICorsPolicyService>()
                 .RegisterTypeAsTransient<UserServiceContext>()
                 .RegisterTypeAsTransient<TbUsersRepository, ITbUsersRepository>()
-                .RegisterTypeAsSingleton<Hasher, IHasher>();
+                .RegisterTypeAsSingleton<Hasher, IHasher>()
+                .RegisterInstance<Microsoft.Extensions.Hosting.IHostingEnvironment>(this.environment)
+                .RegisterInstance<IConfiguration>(this.configuration);
         }
     }
 }

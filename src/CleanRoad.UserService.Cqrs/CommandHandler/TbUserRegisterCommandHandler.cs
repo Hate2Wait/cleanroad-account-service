@@ -27,10 +27,7 @@ namespace CleanRoad.UserService.Cqrs.CommandHandler
                 StrUserId = command.UserName,
                 Name = command.Name,
                 Password = this.hasher.CreateHash(command.Password),
-                Email = command.EmailAddress,
-                SecContent = 1,
-                SecPrimary = 1,
-                Gmrank = 1
+                Email = command.Email,
             };
 
             await this.tbUsersRepository.AddAsync(tbUser);
