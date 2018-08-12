@@ -1,13 +1,22 @@
-﻿using CleanRoad.UserService.Entities;
+﻿using System.Text;
+using CleanRoad.UserService.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace CleanRoad.UserService.Repositories.Context
 {
     public partial class UserServiceContext : DbContext
     {
+        private readonly IOptions<DatabaseConnectionOptions> connectionOptions;
+
+        public UserServiceContext(IOptions<DatabaseConnectionOptions> connectionOptions)
+        {
+            this.connectionOptions = connectionOptions;
+        }
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=desktop-v728m00;Database=SRO_VT_ACCOUNT;User Id=sa;Password=12345678;");
+            optionsBuilder.UseSqlServer(this.BuildConnectionString());
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -1004,6 +1013,15 @@ namespace CleanRoad.UserService.Repositories.Context
 
                 entity.Property(e => e.UpdateTime).HasColumnType("smalldatetime");
             });
+        }
+
+        private string BuildConnectionString()
+        {
+            return new StringBuilder($"Server={this.connectionOptions.Value.Server};")
+                .Append($"Database={this.connectionOptions.Value.Database};")
+                .Append($"User Id={this.connectionOptions.Value.UserId};")
+                .Append($"Password={this.connectionOptions.Value.Password};")
+                .ToString();
         }
     }
 }

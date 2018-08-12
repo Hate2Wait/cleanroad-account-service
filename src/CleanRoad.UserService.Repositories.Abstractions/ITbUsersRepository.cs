@@ -9,6 +9,8 @@ namespace CleanRoad.UserService.Repositories.Abstractions
 
         Task<TbUser> FindAsync(string userName);
 
+        Task<TbUser> FindUserByUserNameOrEmailAsync(string emailOrUserName);
+
         Task AddAsync(TbUser user);
 
         void Edit(TbUser user);

@@ -30,6 +30,13 @@ namespace CleanRoad.UserService.Repositories
                 .FirstOrDefaultAsync(user => user.StrUserId == userName);
         }
 
+        public async Task<TbUser> FindUserByUserNameOrEmailAsync(string emailOrUserName)
+        {
+            return await this.context.Set<TbUser>()
+                .AsQueryable()
+                .FirstOrDefaultAsync(user => user.Email == emailOrUserName || user.StrUserId == emailOrUserName);
+        }
+
         public async Task AddAsync(TbUser user)
         {
             await this.context.AddAsync(user);

@@ -5,8 +5,14 @@
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.FluentBuilder" Version="1.0.2" />
     <PackageReference Include="CleanCodeLabs.AutoMapper.Extensions.Autofac.DependencyInjection" Version="1.0.0" />
+    <PackageReference Include="IdentityServer4" Version="2.2.0" />
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="2.6.0" />
     <PackageReference Include="MediatR.Extensions.Autofac.DependencyInjection" Version="1.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.1.1" />
+    <PackageReference Include="Serilog.AspNetCore" Version="2.1.1" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+    <PackageReference Include="Serilog.Sinks.RollingFile" Version="3.3.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CleanRoad.UserService.AutoMapper\CleanRoad.UserService.AutoMapper.csproj" />

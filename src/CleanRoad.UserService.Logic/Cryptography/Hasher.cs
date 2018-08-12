@@ -26,5 +26,10 @@ namespace CleanRoad.UserService.Logic.Cryptography
 
             return builder.ToString().ToLower();
         }
+
+        public bool ValidatePasswordEquality(string unhashed, string hashed)
+        {
+            return this.CreateHash(unhashed) == hashed;
+        }
     }
 }

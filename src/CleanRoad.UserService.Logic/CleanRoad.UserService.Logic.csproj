@@ -3,6 +3,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CleanRoad.UserService.Constants\CleanRoad.UserService.Constants.csproj" />
+    <ProjectReference Include="..\CleanRoad.UserService.Extensions\CleanRoad.UserService.Extensions.csproj" />
     <ProjectReference Include="..\CleanRoad.UserService.Logic.Abstractions\CleanRoad.UserService.Logic.Abstractions.csproj" />
+    <ProjectReference Include="..\CleanRoad.UserService.Repositories.Abstractions\CleanRoad.UserService.Repositories.Abstractions.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="IdentityServer4" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.1.1" />
   </ItemGroup>
 </Project>
