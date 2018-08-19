@@ -8,4 +8,7 @@
     <ProjectReference Include="..\Gareon.UserService.Logic.Abstractions\Gareon.UserService.Logic.Abstractions.csproj" />
     <ProjectReference Include="..\Gareon.UserService.Repositories.Abstractions\Gareon.UserService.Repositories.Abstractions.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
+  </ItemGroup>
 </Project>

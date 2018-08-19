@@ -8,12 +8,12 @@ using Microsoft.Extensions.Caching.Distributed;
 
 namespace Gareon.UserService.Logic.Authentication
 {
-    public class DistributedCacheGrantStoreService : IPersistedGrantStore
+    public class DistributedCachedGrantStoreService : IPersistedGrantStore
     {
         private readonly IDistributedCache cache;
-        private const string TokenKeyPrefix = "cleanroad_token_";
+        private const string TokenKeyPrefix = "gareon_token_";
 
-        public DistributedCacheGrantStoreService(IDistributedCache cache)
+        public DistributedCachedGrantStoreService(IDistributedCache cache)
         {
             this.cache = cache;
         }
@@ -27,7 +27,7 @@ namespace Gareon.UserService.Logic.Authentication
             
             await this.cache.AddOrUpdateAsync(grant.Key, grant, cachingOptions);
 
-            await this.cache.AddOrUpdateAsync($"{DistributedCacheGrantStoreService.TokenKeyPrefix}{ grant.SubjectId }", grant, cachingOptions);
+            await this.cache.AddOrUpdateAsync($"{DistributedCachedGrantStoreService.TokenKeyPrefix}{ grant.SubjectId }", grant, cachingOptions);
         }
 
         public async Task<PersistedGrant> GetAsync(string key)
@@ -37,7 +37,7 @@ namespace Gareon.UserService.Logic.Authentication
 
         public async Task<IEnumerable<PersistedGrant>> GetAllAsync(string subjectId)
         {
-            var grants = await this.cache.GetAsync<IEnumerable<PersistedGrant>, string>($"{DistributedCacheGrantStoreService.TokenKeyPrefix}{ subjectId }");
+            var grants = await this.cache.GetAsync<IEnumerable<PersistedGrant>, string>($"{DistributedCachedGrantStoreService.TokenKeyPrefix}{ subjectId }");
 
             return grants.ToArray().AsEnumerable();
         }
@@ -49,7 +49,7 @@ namespace Gareon.UserService.Logic.Authentication
 
         public async Task RemoveAllAsync(string subjectId, string clientId)
         {
-            var grants = await this.cache.GetAsync<IEnumerable<PersistedGrant>, string>($"{DistributedCacheGrantStoreService.TokenKeyPrefix}{ subjectId }");
+            var grants = await this.cache.GetAsync<IEnumerable<PersistedGrant>, string>($"{DistributedCachedGrantStoreService.TokenKeyPrefix}{ subjectId }");
 
             foreach (var grant in grants.Where(grant => grant.ClientId == clientId).ToArray())
             {
@@ -59,7 +59,7 @@ namespace Gareon.UserService.Logic.Authentication
 
         public async Task RemoveAllAsync(string subjectId, string clientId, string type)
         {
-            var grants = await this.cache.GetAsync<IEnumerable<PersistedGrant>, string>($"{DistributedCacheGrantStoreService.TokenKeyPrefix}{ subjectId }");
+            var grants = await this.cache.GetAsync<IEnumerable<PersistedGrant>, string>($"{DistributedCachedGrantStoreService.TokenKeyPrefix}{ subjectId }");
 
             foreach (var grant in grants.Where(grant => grant.ClientId == clientId && grant.Type == type).ToArray())
             {

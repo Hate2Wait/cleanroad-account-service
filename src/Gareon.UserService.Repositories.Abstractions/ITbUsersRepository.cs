@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Gareon.UserService.Domain;
 
 namespace Gareon.UserService.Repositories.Abstractions
@@ -11,6 +12,8 @@ namespace Gareon.UserService.Repositories.Abstractions
 
         Task<TbUser> FindUserByUserNameOrEmailAsync(string emailOrUserName);
 
+        Task<ICollection<TbUser>> LoadAllAsync(); 
+        
         Task AddAsync(TbUser user);
 
         void Edit(TbUser user);

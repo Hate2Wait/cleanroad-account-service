@@ -20,9 +20,12 @@ using IdentityServer4.Services;
 using IdentityServer4.Stores;
 using IdentityServer4.Validation;
 using MediatR.Extensions.Autofac.DependencyInjection;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,7 +40,7 @@ namespace Gareon.UserService.Bootstrap
         private readonly IConfiguration configuration;
         private readonly IHostingEnvironment environment;
         
-        private const string ApplicationPrefix = "CleanRoad.UserService";
+        private static readonly string ApplicationPrefix = typeof(Startup).Assembly.GetName().Name.Replace("Bootstrap", "");
         private const string CorsPolicyName = "AllowSpecific";
         private const string AuthenticationSchema = "Bearer";
         private const string RedisCacheOptions = "RedisCacheOptions";
@@ -68,7 +71,14 @@ namespace Gareon.UserService.Bootstrap
             var authority = identityConfig
                 .GetValue<string>("Authority");
             
-            services.AddMvc()
+            services.AddMvc(options =>
+                {
+                    var requiredAuthorizedUser = new AuthorizationPolicyBuilder()
+                        .RequireAuthenticatedUser()
+                        .Build();
+
+                    options.Filters.Add(new AuthorizeFilter(requiredAuthorizedUser));
+                })
                 .AddJsonOptions(options =>
                 {
                     options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
@@ -139,13 +149,15 @@ namespace Gareon.UserService.Bootstrap
 
             new AutofacFluentBuilder(builder.AddMediatR(applicationAssemblies).AddAutoMapper(applicationAssemblies))
                 .RegisterTypeAsScoped<CommandBus, ICommandBus>()
+                .RegisterTypeAsScoped<HttpContextAccessor, IHttpContextAccessor>()
                 .RegisterTypeAsScoped<AuthenticationService, IResourceOwnerPasswordValidator>()
                 .RegisterTypeAsScoped<AuthenticationService, IProfileService>()
                 .RegisterTypeAsScoped<AuthenticationService, IAuthService>()
-                .RegisterTypeAsScoped<DistributedCacheGrantStoreService, IPersistedGrantStore>()
+                .RegisterTypeAsScoped<DistributedCachedGrantStoreService, IPersistedGrantStore>()
                 .RegisterTypeAsSingleton<CorsPolicyService, ICorsPolicyService>()
                 .RegisterTypeAsTransient<UserServiceContext>()
                 .RegisterTypeAsTransient<TbUsersRepository, ITbUsersRepository>()
+                .RegisterTypeAsTransient<BlockedUsersRepository, IBlockedUsersRepository>()
                 .RegisterTypeAsSingleton<Hasher, IHasher>()
                 .RegisterInstance<Microsoft.Extensions.Hosting.IHostingEnvironment>(this.environment)
                 .RegisterInstance<IConfiguration>(this.configuration);

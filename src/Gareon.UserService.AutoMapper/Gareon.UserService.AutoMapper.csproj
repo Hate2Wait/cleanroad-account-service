@@ -4,5 +4,11 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="7.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gareon.UserService.Cqrs.Abstractions\Gareon.UserService.Cqrs.Abstractions.csproj" />
+    <ProjectReference Include="..\Gareon.UserService.Domain\Gareon.UserService.Domain.csproj" />
+    <ProjectReference Include="..\Gareon.UserService.Presentation\Gareon.UserService.Presentation.csproj" />
   </ItemGroup>
 </Project>

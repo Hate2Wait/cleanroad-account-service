@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Gareon.UserService.Domain;
 using Gareon.UserService.Repositories.Abstractions;
@@ -35,6 +36,12 @@ namespace Gareon.UserService.Repositories
             return await this.context.Set<TbUser>()
                 .AsQueryable()
                 .FirstOrDefaultAsync(user => user.Email == emailOrUserName || user.StrUserId == emailOrUserName);
+        }
+
+        public async Task<ICollection<TbUser>> LoadAllAsync()
+        {
+            return await this.context.Set<TbUser>()
+                .ToArrayAsync();
         }
 
         public async Task AddAsync(TbUser user)
