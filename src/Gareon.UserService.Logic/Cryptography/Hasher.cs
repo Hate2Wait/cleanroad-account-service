@@ -8,7 +8,7 @@ namespace Gareon.UserService.Logic.Cryptography
 {
     public class Hasher : IHasher
     {
-        public string CreateHash(string unhashed)
+        public string CreateMd5Hash(string unhashed)
         {
             var bytes = Encoding.UTF8.GetBytes(unhashed);
 
@@ -44,15 +44,15 @@ namespace Gareon.UserService.Logic.Cryptography
 
         public bool ValidatePasswordEquality(string unhashed, string hashed)
         {
-            return this.CreateHash(unhashed) == hashed;
+            return this.CreateMd5Hash(unhashed) == hashed;
         }
 
         public bool ValidatePasswordEquality(string unhashed, string hashed, byte[] salt)
         {
-            throw new System.NotImplementedException();
+            return this.CreateSaltedHash(unhashed, salt) == hashed;
         }
 
-        public byte[] GeneratelSalt()
+        public byte[] GenerateSalt()
         {
             var salt = new byte[128 / 8];
 

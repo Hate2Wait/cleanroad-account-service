@@ -90,6 +90,13 @@ namespace Gareon.UserService.Logic.Authentication
             }
 
             claims.Add(new Claim(JwtClaimTypes.Role, RoleNames.GameMaster));
+
+            if (!(user.SecPrimary == 1 && user.SecContent == 1))
+            {
+                return claims;
+            }
+            
+            claims.Add(new Claim(JwtClaimTypes.Role, RoleNames.GameDeveloper));
             
             return claims;
         }

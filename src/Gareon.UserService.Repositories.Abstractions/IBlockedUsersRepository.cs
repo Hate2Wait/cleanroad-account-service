@@ -6,6 +6,6 @@ namespace Gareon.UserService.Repositories.Abstractions
 {
     public interface IBlockedUsersRepository
     {
-        Task<ICollection<BlockedUser>> FindAllBlockedUsersAsync();
+        Task<ICollection<BlockedUser>> FindAllAsync();
     }
 }

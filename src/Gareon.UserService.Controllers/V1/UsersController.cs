@@ -31,10 +31,14 @@ namespace Gareon.UserService.Controllers.V1
             return users;
         }
 
-        [HttpPatch("adminrights/{id:int}")]
-        [Authorize(Roles = RoleNames.GameMaster)]
-        public async Task<IActionResult> GrantAdminRights(int id)
+        [Authorize]
+        [HttpPatch("{id:int}/passwordchange")]
+        public async Task<IActionResult> Passwordchange(int id, [FromBody] TbUserChangePwdDto userChangePwdDto)
         {
+            var command = new TbUserChangePwdCommand(id, userChangePwdDto.CurrentPassword, userChangePwdDto.NewPassword, userChangePwdDto.SecretCode);
+
+            await this.bus.SendAsync(command);
+
             return this.NoContent();
         }
     }

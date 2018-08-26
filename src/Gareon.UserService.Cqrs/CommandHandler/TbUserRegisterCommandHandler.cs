@@ -22,13 +22,13 @@ namespace Gareon.UserService.Cqrs.CommandHandler
         
         public async Task<Unit> Handle(TbUserRegisterCommand command, CancellationToken ctx)
         {
-            var salt = this.hasher.GeneratelSalt();
+            var salt = this.hasher.GenerateSalt();
             
             var tbUser = new TbUser
             {
                 StrUserId = command.UserName,
                 Name = command.Name,
-                Password = this.hasher.CreateHash(command.Password),
+                Password = this.hasher.CreateMd5Hash(command.Password),
                 SecretCode = this.hasher.CreateSaltedHash(command.SecretCode, salt),
                 SecretCodeSalt = salt,
                 Email = command.Email,

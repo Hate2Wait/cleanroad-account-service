@@ -2,7 +2,7 @@
 {
     public interface IHasher
     {
-        string CreateHash(string unhased);
+        string CreateMd5Hash(string unhashed);
 
         string CreateSaltedHash(string unhashed, byte[] salt);
 
@@ -10,6 +10,6 @@
         
         bool ValidatePasswordEquality(string unhashed, string hashed, byte[] salt);
 
-        byte[] GeneratelSalt();
+        byte[] GenerateSalt();
     }
 }

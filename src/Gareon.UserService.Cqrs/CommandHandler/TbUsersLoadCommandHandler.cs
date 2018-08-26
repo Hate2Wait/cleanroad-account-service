@@ -29,7 +29,7 @@ namespace Gareon.UserService.Cqrs.CommandHandler
             var users = await this.tbUsersRepository
                 .LoadAllAsync();
 
-            var blockedUsers = await this.blockedUsersRepository.FindAllBlockedUsersAsync();
+            var blockedUsers = await this.blockedUsersRepository.FindAllAsync();
 
             var mappedUsers = this.mapper.Map<ICollection<TbUserDto>>(users);
 

@@ -16,7 +16,7 @@ namespace Gareon.UserService.Repositories
             this.context = context;
         }
 
-        public async Task<ICollection<BlockedUser>> FindAllBlockedUsersAsync()
+        public async Task<ICollection<BlockedUser>> FindAllAsync()
         {
             return await this.context.Set<BlockedUser>()
                 .AsNoTracking()
