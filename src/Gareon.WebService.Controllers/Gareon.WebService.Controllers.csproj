@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gareon.WebService.Constants\Gareon.WebService.Constants.csproj" />
+    <ProjectReference Include="..\Gareon.WebService.Cqrs.Abstractions\Gareon.WebService.Cqrs.Abstractions.csproj" />
+    <ProjectReference Include="..\Gareon.WebService.Presentation\Gareon.WebService.Presentation.csproj" />
+  </ItemGroup>
+</Project>
