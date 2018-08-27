@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using Gareon.WebService.Domain;
+using Gareon.WebService.Domain.Account;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 

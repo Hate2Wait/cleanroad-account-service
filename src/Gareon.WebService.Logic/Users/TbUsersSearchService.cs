@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Gareon.WebService.Domain;
+using Gareon.WebService.Domain.Account;
 using Gareon.WebService.Logic.Abstractions.UsersSearchService;
 using Gareon.WebService.Repositories.Abstractions;
 

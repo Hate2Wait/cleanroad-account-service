@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Gareon.WebService.Cqrs.Abstractions.CommandHandler;
 using Gareon.WebService.Cqrs.Abstractions.Commands;
 using Gareon.WebService.Domain;
+using Gareon.WebService.Domain.Account;
 using Gareon.WebService.Logic.Abstractions.Cryptography;
 using Gareon.WebService.Repositories.Abstractions;
 using MediatR;

@@ -1,6 +1,7 @@
 using AutoMapper;
 using Gareon.WebService.AutoMapper.Converters;
 using Gareon.WebService.Domain;
+using Gareon.WebService.Domain.Account;
 using Gareon.WebService.Presentation;
 
 namespace Gareon.WebService.AutoMapper.Profiles

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Gareon.WebService.Domain
+namespace Gareon.WebService.Domain.Account
 {
     public partial class CasGmchatLog
     {

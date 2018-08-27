@@ -2,6 +2,7 @@ using System.Linq;
 using AutoMapper;
 using Gareon.ServiceBase.IdentifierMappings;
 using Gareon.WebService.Domain;
+using Gareon.WebService.Domain.Account;
 using Gareon.WebService.Presentation;
 
 namespace Gareon.WebService.AutoMapper.Converters

@@ -1,4 +1,4 @@
-﻿namespace Gareon.WebService.Domain
+﻿namespace Gareon.WebService.Domain.Account
 {
     public partial class ModuleVersion
     {
