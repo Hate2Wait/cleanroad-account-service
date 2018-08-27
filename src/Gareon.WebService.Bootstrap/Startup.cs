@@ -121,8 +121,11 @@ namespace Gareon.WebService.Bootstrap
 
             services.Configure<GzipCompressionProviderOptions>(options => options.Level = CompressionLevel.Optimal);
 
-            services.Configure<DatabaseConnectionOptions>(options =>
-                this.configuration.GetSection(nameof(DatabaseConnectionOptions)).Bind(options));
+            services.Configure<AccountConnectionOptions>(options =>
+                this.configuration.GetSection(nameof(AccountConnectionOptions)).Bind(options));
+            
+            services.Configure<ShardConnectionOptions>(options =>
+                this.configuration.GetSection(nameof(ShardConnectionOptions)).Bind(options));
             
             services.AddResponseCompression();
         }
@@ -155,7 +158,7 @@ namespace Gareon.WebService.Bootstrap
                 .RegisterTypeAsScoped<AuthenticationService, IAuthService>()
                 .RegisterTypeAsScoped<DistributedCachedGrantStoreService, IPersistedGrantStore>()
                 .RegisterTypeAsSingleton<CorsPolicyService, ICorsPolicyService>()
-                .RegisterTypeAsTransient<UserServiceContext>()
+                .RegisterTypeAsTransient<AccountServiceContext>()
                 .RegisterTypeAsTransient<TbUsersRepository, ITbUsersRepository>()
                 .RegisterTypeAsTransient<BlockedUsersRepository, IBlockedUsersRepository>()
                 .RegisterTypeAsTransient<UniqueKillsRepository, IUniqueKillsRepository>()

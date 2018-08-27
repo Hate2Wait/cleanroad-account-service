@@ -9,9 +9,9 @@ namespace Gareon.WebService.Repositories
 {
     public class BlockedUsersRepository : IBlockedUsersRepository
     {
-        private readonly UserServiceContext context;
+        private readonly AccountServiceContext context;
 
-        public BlockedUsersRepository(UserServiceContext context)
+        public BlockedUsersRepository(AccountServiceContext context)
         {
             this.context = context;
         }

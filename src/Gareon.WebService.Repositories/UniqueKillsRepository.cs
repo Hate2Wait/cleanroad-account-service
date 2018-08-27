@@ -9,9 +9,9 @@ namespace Gareon.WebService.Repositories
 {
     public class UniqueKillsRepository : IUniqueKillsRepository
     {
-        private readonly UserServiceContext context;
+        private readonly AccountServiceContext context;
 
-        public UniqueKillsRepository(UserServiceContext context)
+        public UniqueKillsRepository(AccountServiceContext context)
         {
             this.context = context;
         }

@@ -10,9 +10,9 @@ namespace Gareon.WebService.Repositories
 {
     public class TbUsersRepository : ITbUsersRepository
     {
-        private readonly UserServiceContext context;
+        private readonly AccountServiceContext context;
 
-        public TbUsersRepository(UserServiceContext context)
+        public TbUsersRepository(AccountServiceContext context)
         {
             this.context = context;
         }

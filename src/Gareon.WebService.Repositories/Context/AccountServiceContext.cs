@@ -5,11 +5,11 @@ using Microsoft.Extensions.Options;
 
 namespace Gareon.WebService.Repositories.Context
 {
-    public partial class UserServiceContext : DbContext
+    public partial class AccountServiceContext : DbContext
     {
-        private readonly IOptions<DatabaseConnectionOptions> connectionOptions;
+        private readonly IOptions<AccountConnectionOptions> connectionOptions;
 
-        public UserServiceContext(IOptions<DatabaseConnectionOptions> connectionOptions)
+        public AccountServiceContext(IOptions<AccountConnectionOptions> connectionOptions)
         {
             this.connectionOptions = connectionOptions;
         }

@@ -1,6 +1,6 @@
 ﻿namespace Gareon.WebService.Repositories.Context
 {
-    public class DatabaseConnectionOptions
+    public abstract class DatabaseConnectionOptions
     {
         public string Server { get; set; }
 
